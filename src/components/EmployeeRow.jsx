@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateEmployee } from '../actions/employees';
+import { updateEmployee, deleteEmployee } from '../actions/employees';
 import styles from './EmployeeRow.module.css';
 
 const validate = {
@@ -47,6 +47,10 @@ class EmployeeRow extends Component {
         this.setState({ edit: false });
     };
 
+    handleDelete = () => {
+        this.props.deleteEmployee(this.props.employee.id);
+    };
+
     render() {
         return (
             <div className={styles.row}>
@@ -70,7 +74,7 @@ class EmployeeRow extends Component {
                 ) : (
                     <>
                         <button onClick={() => this.setState({ edit: true })}>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={this.handleDelete}>Delete</button>
                     </>
                 )}
             </div>
@@ -78,4 +82,4 @@ class EmployeeRow extends Component {
     }
 }
 
-export default connect(null, { updateEmployee })(EmployeeRow);
+export default connect(null, { updateEmployee, deleteEmployee })(EmployeeRow);

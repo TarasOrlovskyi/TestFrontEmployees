@@ -23,3 +23,10 @@ export const updateEmployee = (id, updatedEmployee) => async (dispatch) => {
     });
     if (res.ok) dispatch(fetchEmployees());
 };
+
+export const deleteEmployee = (id) => async (dispatch) => {
+    const res = await fetch(`/api/employees/${id}`, {
+        method: 'DELETE'
+    });
+    if (res.ok) dispatch(fetchEmployees());
+};
